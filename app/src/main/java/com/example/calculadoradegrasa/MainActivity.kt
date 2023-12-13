@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.calculadoradegrasa.ui.theme.*
 import java.lang.Math.log10
@@ -280,13 +279,5 @@ fun MainPage() {
         containerColor = RaisinBlack
     ) {
         TextsFields()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CALCULADORADEGRASATheme(darkTheme = true) {
-        MainPage()
     }
 }
