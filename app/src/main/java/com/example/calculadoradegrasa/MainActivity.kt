@@ -43,7 +43,7 @@ fun TopAppBar() {
     TopAppBar(
         title = {
             Text(
-                text = "Calculadora de grasa",
+                text = "Body Fat Calculator",
                 fontSize = 24.sp,
                 color = Color.Black,
                 modifier = Modifier
@@ -54,7 +54,7 @@ fun TopAppBar() {
         ),
         actions = {
             Text(
-                text = "Genero :",
+                text = "Gender :",
                 color = Color(0xFF130374),
                 fontSize = 20.sp
             )
@@ -102,7 +102,7 @@ fun BottomAppBar(){
     BottomAppBar(
         actions = {
             Text(
-                text = "aclaración esto se calcula con la fórmula de Hodgdon–Beckett(en los hombre no hace falta poner la cadera) ",
+                text = "clarification this is calculated with the Hodgdon-Beckett formula (in men it is not necessary to put the hip) ",
                 color = Color.Gray,
                 textAlign = TextAlign.Center
             )
@@ -129,7 +129,7 @@ fun TextsFields() {
             value = height,
             onValueChange = { height = it },
             singleLine = true,
-            label = { Text("Ingresa tu altura (en cm)") },
+            label = { Text("Enter your height (in cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
@@ -139,7 +139,7 @@ fun TextsFields() {
             value = weight,
             onValueChange = { weight = it },
             singleLine = true,
-            label = { Text("Ingresa tu peso (en kg)") },
+            label = { Text("Enter your weight (in kg)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
@@ -149,7 +149,7 @@ fun TextsFields() {
             value = waist,
             onValueChange = { waist = it },
             singleLine = true,
-            label = { Text("Ingresa tu cintura (en cm)") },
+            label = { Text("Enter your waist (in cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
@@ -159,7 +159,7 @@ fun TextsFields() {
             value = neck,
             onValueChange = { neck = it },
             singleLine = true,
-            label = { Text("Ingresa tu cuello (en cm)") },
+            label = { Text("Enter your neck (in cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
@@ -169,7 +169,7 @@ fun TextsFields() {
             value = hip,
             onValueChange = { hip = it },
             singleLine = true,
-            label = { Text("Ingresa tu cadera (en cm)") },
+            label = { Text("Enter your hip (in cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
@@ -187,7 +187,7 @@ fun TextsFields() {
                 )
             }
         ) {
-            Text("Calcular")
+            Text("Calculator")
         }
         TextsFatCalculator()
     }
@@ -217,6 +217,7 @@ fun fatCalculator(height: Double, waist: Double, neck: Double, weight: Double, h
         GeneralFatPercentage = fatPercentage
         GeneralFat = fat
         GeneralMuscles = muscle
+
     } else {
         var fatPercentage = 495 / (1.29579-0.35004 * log10((waist + hip - neck)) + 0.22100 * log10(height)) - 450
 
@@ -249,17 +250,17 @@ fun TextsFatCalculator() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Porcentaje de grasa: $GeneralFatPercentage",
+            text = "body fat percentage: $GeneralFatPercentage",
             color = Color.White,
             fontSize = 19.sp
         )
         Text(
-            text = "Cantidad de grasa(en kg): $GeneralFat",
+            text = "amount of fat (in kg): $GeneralFat",
             color = Color.White,
             fontSize = 19.sp
         )
         Text(
-            text = "Cantidad de músculo(en kg): $GeneralMuscles",
+            text = "amount of muscle (in kg): $GeneralMuscles",
             color = Color.White,
             fontSize = 19.sp
         )
