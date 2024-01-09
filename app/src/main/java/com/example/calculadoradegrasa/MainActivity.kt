@@ -1,20 +1,19 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 package com.example.calculadoradegrasa
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.calculadoradegrasa.ui.theme.*
 import java.lang.Math.log10
@@ -43,21 +42,15 @@ fun TopAppBar() {
     TopAppBar(
         title = {
             Text(
-                text = "Body Fat Calculator",
-                fontSize = 24.sp,
-                color = Color.Black,
-                modifier = Modifier
+                text = "Calculadora de grasa",
+                fontSize = 20.sp,
+                color = NewBlack
             )
         },
         colors = TopAppBarDefaults.largeTopAppBarColors(
-            containerColor = Emerald
+            containerColor = Orange
         ),
         actions = {
-            Text(
-                text = "Gender :",
-                color = Color(0xFF130374),
-                fontSize = 20.sp
-            )
             Switch(
                 checked = isMan,
                 onCheckedChange = {
@@ -76,20 +69,20 @@ fun TopAppBar() {
                     {
                         Icon(
                             painter = painterResource(R.drawable.woman),
-                            contentDescription = "man",
+                            contentDescription = "woman",
                             modifier = Modifier.size(20.dp)
                         )
                     }
                 },
                 colors = SwitchDefaults.colors(
-                    checkedThumbColor = Color(0xFF150097),//la bola
-                    checkedTrackColor = Color(0xFF6744F2),//el fondo
-                    checkedBorderColor = Color(0xFF6744F2),//borde
-                    checkedIconColor = Color.White,//icono
-                    uncheckedThumbColor = Color(0xFF6A016C),
-                    uncheckedTrackColor = Color(0xFFF23CF6),
-                    uncheckedBorderColor = Color(0xFF8A00CC),
-                    uncheckedIconColor = Color.White
+                    checkedThumbColor = Blue,//la bola
+                    checkedTrackColor = LightBlue,//el fondo
+                    checkedBorderColor = Blue,//borde
+                    checkedIconColor = White,//icono
+                    uncheckedThumbColor = Red,
+                    uncheckedTrackColor = LightRed,
+                    uncheckedBorderColor = Red,
+                    uncheckedIconColor = White
                 )
             )
         }
@@ -99,16 +92,36 @@ fun TopAppBar() {
 
 @Composable
 fun BottomAppBar(){
-    BottomAppBar(
-        actions = {
-            Text(
-                text = "clarification this is calculated with the Hodgdon-Beckett formula (in men it is not necessary to put the hip) ",
-                color = Color.Gray,
-                textAlign = TextAlign.Center
-            )
-        },
-        containerColor = RaisinBlack
-    )
+    BottomAppBar (
+        containerColor = NewBlack,
+        modifier = Modifier
+            .height(140.dp)
+            .padding(bottom = 26.dp)
+    ) {
+        Row (
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column{
+                Text(
+                    text = "Aclaración esto se calcula con la",
+                    color = LightBlue
+                )
+                Text(
+                    text = "fórmula de Hodgdon–Beckett y",
+                    color = LightBlue
+                )
+                Text(
+                    text = "para los hombre no hace falta poner",
+                    color = LightBlue
+                )
+                Text(
+                    text = "la cadera",
+                    color = LightBlue
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -121,61 +134,72 @@ fun TextsFields() {
 
     Column(
         Modifier
-            .padding(vertical = 80.dp)
+            .padding(
+                vertical = 25.dp,
+                horizontal = 55.dp
+            )
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextField(
+        OutlinedTextField(
             value = height,
             onValueChange = { height = it },
             singleLine = true,
-            label = { Text("Enter your height (in cm)") },
+            label = { Text("Ingresa tu altura (en cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-        TextField(
+        Spacer(modifier = Modifier.padding(12.5.dp))
+        OutlinedTextField(
             value = weight,
             onValueChange = { weight = it },
             singleLine = true,
-            label = { Text("Enter your weight (in kg)") },
+            label = { Text("Ingresa tu peso (en kg)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-        TextField(
+        Spacer(modifier = Modifier.padding(12.5.dp))
+        OutlinedTextField(
             value = waist,
             onValueChange = { waist = it },
             singleLine = true,
-            label = { Text("Enter your waist (in cm)") },
+            label = { Text("Ingresa tu cintura (en cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-        TextField(
+        Spacer(modifier = Modifier.padding(12.5.dp))
+        OutlinedTextField(
             value = neck,
             onValueChange = { neck = it },
             singleLine = true,
-            label = { Text("Enter your neck (in cm)") },
+            label = { Text("Ingresa tu cuello (en cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-        TextField(
+        Spacer(modifier = Modifier.padding(12.5.dp))
+        OutlinedTextField(
             value = hip,
             onValueChange = { hip = it },
             singleLine = true,
-            label = { Text("Enter your hip (in cm)") },
+            label = { Text("Ingresa tu cadera (en cm)") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(8.5.dp))
         Button(
+            colors =  ButtonDefaults.buttonColors(
+                containerColor = Orange
+            ),
+            modifier = Modifier
+                .background(
+                    shape = RoundedCornerShape(size = 12.dp),
+                    color = Orange
+                ),
             onClick = {
                 fatCalculator(
                     height = height.toDoubleOrNull() ?: 0.0,
@@ -187,11 +211,15 @@ fun TextsFields() {
                 )
             }
         ) {
-            Text("Calculator")
+            Text(
+                text = "calcular",
+                fontSize = 16.sp,
+                color = NewBlack
+            )
         }
+        Spacer(modifier = Modifier.padding(12.5.dp))
         TextsFatCalculator()
     }
-
 }
 
 fun fatCalculator(height: Double, waist: Double, neck: Double, weight: Double, hip: Double, isMan: Boolean) {
@@ -250,24 +278,15 @@ fun TextsFatCalculator() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "body fat percentage: $GeneralFatPercentage",
-            color = Color.White,
-            fontSize = 19.sp
-        )
-        Text(
-            text = "amount of fat (in kg): $GeneralFat",
-            color = Color.White,
-            fontSize = 19.sp
-        )
-        Text(
-            text = "amount of muscle (in kg): $GeneralMuscles",
-            color = Color.White,
-            fontSize = 19.sp
+            text = "Porsentaje de grasa : $GeneralFatPercentage%\n" +
+                    "Cantidad de grasa : $GeneralFat kg\n" +
+                    "Cantidad de musculo : $GeneralMuscles kg",
+            fontSize = 20.sp,
+            color = Orange
         )
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainPage() {
     Scaffold(
@@ -277,8 +296,20 @@ fun MainPage() {
         bottomBar = {
             BottomAppBar()
         },
-        containerColor = RaisinBlack
-    ) {
-        TextsFields()
+        containerColor = NewBlack
+    ) {innerPadding ->
+        Column (
+            Modifier.padding(innerPadding)
+        ){
+            TextsFields()
+        }
+    }
+}
+
+@Preview(showSystemUi = false)
+@Composable
+fun Preview() {
+    CALCULADORADEGRASATheme(darkTheme = true) {
+        MainPage()
     }
 }

@@ -4,11 +4,12 @@
 
     <application
         android:allowBackup="true"
+        android:isGame="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/portada"
+        android:icon="@drawable/portadagg"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/portada"
+        android:roundIcon="@drawable/portadagg"
         android:supportsRtl="true"
         android:theme="@style/Theme.CALCULADORADEGRASA"
         tools:targetApi="31">
