@@ -327,11 +327,3 @@ fun MainPage() {
         }
     }
 }
-
-@Preview(showSystemUi = false)
-@Composable
-fun Preview() {
-    CALCULADORADEGRASATheme(darkTheme = true) {
-        MainPage()
-    }
-}

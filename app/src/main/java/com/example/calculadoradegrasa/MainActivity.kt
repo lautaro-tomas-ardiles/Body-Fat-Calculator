@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
+import com.example.calculadoradegrasa.Screens.MainPage
 import com.example.calculadoradegrasa.ui.theme.*
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CALCULADORADEGRASATheme(darkTheme = true) {
-
+                MainPage()
             }
         }
     }
